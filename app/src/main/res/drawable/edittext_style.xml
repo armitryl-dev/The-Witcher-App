@@ -1,0 +1,39 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Fondo negro principal -->
+    <item>
+        <shape>
+            <solid android:color="#000000" />
+        </shape>
+    </item>
+
+    <!-- Borde exterior blanco -->
+    <item>
+        <shape>
+            <solid android:color="@android:color/transparent" />
+            <stroke android:width="2dp" android:color="#615E5E" />
+            <corners android:radius="0dp" />
+        </shape>
+    </item>
+
+    <!-- Espaciado entre bordes (negro para parecer espacio) -->
+    <item android:left="2dp" android:right="2dp" android:top="2dp" android:bottom="2dp">
+        <shape>
+            <solid android:color="#000000" />
+            <corners android:radius="0dp" />
+        </shape>
+    </item>
+
+    <!-- Borde interior blanco con esquinas invertidas -->
+    <item android:left="4dp" android:right="4dp" android:top="4dp" android:bottom="4dp">
+        <shape>
+            <solid android:color="@android:color/transparent" />
+            <stroke android:width="2dp" android:color="#615E5E" />
+            <!-- Esquinas invertidas -->
+            <!-- <corners
+                    android:topLeftRadius="8dp"
+                    android:topRightRadius="8dp"
+                    android:bottomLeftRadius="8dp"
+                    android:bottomRightRadius="8dp" />-->
+        </shape>
+    </item>
+</layer-list>

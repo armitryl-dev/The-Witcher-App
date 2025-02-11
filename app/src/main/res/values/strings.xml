@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">The Witcher</string>
+    <string name="loginText">Iniciar sesion</string>
+    <string name="userHint">Usuario</string>
+    <string name="emailHint">Email</string>
+    <string name="passwordHint">Contraseña</string>
+    <string name="passwordHintRepeat">Repetir contraseña</string>
+    <string name="singup">Registrarse</string>
+    <string name="forgottenPassword">¿Contraseña olvidada?</string>
+    <string name="registerText">Registrarse</string>
+    <string name="registerText2">¿No tienes una cuenta?</string>
+    <string name="google_button_description">Iniciar sesión con Google</string>
+    <string name="facebook_button_description">Iniciar sesión con Facebook</string>
+
+</resources>

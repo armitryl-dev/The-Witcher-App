@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".Fragments.FragmentLogin"
+        android:background="@drawable/background">
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/loginText"
+            android:fontFamily="@font/main_font"
+            android:textSize="40sp"
+            android:id="@+id/textViewLogin"
+            android:textColor="@color/white"
+            app:layout_constraintTop_toBottomOf="@+id/imageViewTheWitcherLogo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="40dp"/>
+
+    <ImageView
+            android:src="@drawable/logo_thewitcher"
+            android:layout_width="145dp"
+            android:layout_height="107dp"
+            android:id="@+id/imageViewTheWitcherLogo"
+            android:contentDescription="@null"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="40dp"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/userTextField"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/userHint"
+            android:textColorHint="@color/white"
+            app:layout_constraintTop_toBottomOf="@+id/textViewLogin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="30dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/userTextField2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:fontFamily="@font/cinzel"
+                android:textStyle="bold"
+                android:background="@drawable/edittext_style"
+                android:singleLine="true"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/passwordTextField"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/passwordHint"
+            app:endIconMode="password_toggle"
+            app:hintTextColor="@color/white"
+            android:textColorHint="@color/white"
+            app:layout_constraintTop_toBottomOf="@+id/userTextField"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="30dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/passwordTextField2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:textColor="@color/white"
+                android:fontFamily="@font/cinzel"
+                android:textStyle="bold"
+                android:background="@drawable/edittext_style"
+                android:singleLine="true"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+            style="@style/Widget.Material3.Button"
+            android:id="@+id/botonLogin"
+            android:fontFamily="@font/morpheus"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/loginText"
+            android:textColor="@color/black"
+            android:backgroundTint="@color/white"
+            app:layout_constraintTop_toBottomOf="@+id/textContrasenaOlvidada"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="20dp"/>
+
+    <TextView
+            android:text="@string/forgottenPassword"
+            android:textColor="@color/white"
+            android:fontFamily="@font/cinzel"
+            android:textSize="15sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textContrasenaOlvidada"
+            app:layout_constraintTop_toBottomOf="@+id/passwordTextField"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="30dp"
+            app:layout_constraintHorizontal_bias="0.070"/>
+
+    <Button
+            style="@style/Widget.Material3.Button.TonalButton"
+            android:id="@+id/botonRegistrarse"
+            android:fontFamily="@font/morpheus"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/registerText"
+            android:textColor="@color/black"
+            android:backgroundTint="@color/white"
+            app:layout_constraintTop_toBottomOf="@+id/registrarseTextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="20dp"/>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/registerText2"
+            android:textColor="@color/white"
+            android:fontFamily="@font/cinzel"
+            android:textSize="15sp"
+            android:id="@+id/registrarseTextView"
+            app:layout_constraintTop_toBottomOf="@+id/botonLogin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginTop="20dp"
+            app:layout_constraintHorizontal_bias="0.497"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

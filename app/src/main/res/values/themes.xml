@@ -1,0 +1,21 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.TheWitcherApp" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+    </style>
+
+    <style name="Theme.TheWitcherApp" parent="Base.Theme.TheWitcherApp"/>
+
+    <style name="CustomTransparentDatePickerTheme" parent="Theme.AppCompat.Light.Dialog">
+        <!-- Fondo transparente -->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:background">@android:color/transparent</item>
+        <!-- Color del texto principal y secundario -->
+        <item name="android:textColorPrimary">#FFFFFF</item> <!-- Blanco -->
+        <item name="android:textColorSecondary">#B3B3B3</item> <!-- Gris claro -->
+        <!-- Color del acento para los seleccionables -->
+        <item name="android:colorAccent">#FF4081</item> <!-- Color de acento -->
+    </style>
+
+</resources>

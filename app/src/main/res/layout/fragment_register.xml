@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/background"
+        tools:context=".Fragments.FragmentRegister">
+
+    <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:srcCompat="@drawable/logo_thewitcher"
+            android:id="@+id/imageViewRegistro"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/singupRegistrarse"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.05"/>
+
+    <TextView
+            android:text="@string/singup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/main_font"
+            android:textColor="@color/white"
+            android:id="@+id/singupRegistrarse"
+            android:textSize="30dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.04"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/userNameTextField"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/userHint"
+            android:fontFamily="@font/cinzel"
+            app:hintTextColor="@color/white"
+            android:textColorHint="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="210dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/userNameEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:fontFamily="@font/cinzel"
+                android:background="@drawable/edittext_style"
+                android:singleLine="true"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/emailTextField"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/emailHint"
+            app:hintTextColor="@color/white"
+            android:textColorHint="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/userNameTextField"
+            android:layout_marginTop="5dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/emailEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:fontFamily="@font/cinzel"
+                android:background="@drawable/edittext_style"
+                android:singleLine="true"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/setPasswordTextField"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/passwordHint"
+            app:endIconMode="password_toggle"
+            app:hintTextColor="@color/white"
+            android:textColorHint="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/emailTextField"
+            android:layout_marginTop="5dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/setPasswordEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:textColor="@color/white"
+                android:fontFamily="@font/cinzel"
+                android:background="@drawable/edittext_style"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/repeatPasswordTextField"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/passwordHintRepeat"
+            app:endIconMode="password_toggle"
+            app:hintTextColor="@color/white"
+            android:textColorHint="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/setPasswordTextField"
+            android:layout_marginTop="5dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/repeatPasswordEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:textColor="@color/white"
+                android:fontFamily="@font/cinzel"
+                android:background="@drawable/edittext_style"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <DatePicker
+            android:layout_width="265dp"
+            android:layout_height="96dp"
+            android:calendarViewShown="false"
+            android:datePickerMode="spinner"
+            android:theme="@style/CustomTransparentDatePickerTheme"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/repeatPasswordTextField"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.1"
+            android:id="@+id/datePicker"/>
+
+    <Button
+            style="@style/Widget.Material3.Button.ElevatedButton"
+            android:id="@+id/botonSingUp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/singup"
+            android:fontFamily="@font/morpheus"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:backgroundTint="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/datePicker"/>
+
+    <ImageButton
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:srcCompat="@mipmap/facebook_foreground"
+            android:id="@+id/btnFacebook"
+            android:contentDescription="@string/facebook_button_description"
+            android:background="@android:color/transparent"
+            app:layout_constraintEnd_toStartOf="@+id/botonSingUp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/datePicker"/>
+
+    <ImageButton
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:srcCompat="@mipmap/google_foreground"
+            android:id="@+id/btnGoogle"
+            android:contentDescription="@string/google_button_description"
+            android:background="@android:color/transparent"
+            app:layout_constraintStart_toEndOf="@+id/botonSingUp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/datePicker"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
