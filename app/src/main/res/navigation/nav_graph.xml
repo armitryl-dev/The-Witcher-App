@@ -22,8 +22,13 @@
 
         <action
 
-                android:id="@+id/action_firstFragment_to_secondFragment"
+                android:id="@+id/action_login_to_register"
                 app:destination="@id/FragmentRegister" />
+
+        <action
+
+                android:id="@+id/action_login_to_scaffold"
+                app:destination="@id/FragmentScaffold" />
 
 
     </fragment>
@@ -36,7 +41,20 @@
             tools:layout="@layout/fragment_register">
         <action
 
-                android:id="@+id/action_secondFragment_to_firstFragment"
+                android:id="@+id/action_register_to_login"
+                app:destination="@id/FragmentLogin" />
+
+
+    </fragment>
+
+    <fragment
+            android:id="@+id/FragmentScaffold"
+            android:name="com.example.thewitcherapp.Fragments.ScaffoldFragment"
+            android:label="Third Fragment"
+            tools:layout="@layout/fragment_scaffold">
+        <action
+
+                android:id="@+id/action_scaffold_to_login"
                 app:destination="@id/FragmentLogin" />
 
 

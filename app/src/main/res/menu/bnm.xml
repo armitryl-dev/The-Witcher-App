@@ -1,0 +1,14 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+            android:id="@+id/bnm_home"
+            android:icon="@drawable/ic_home"
+            android:title="Home" />
+    <item
+            android:id="@+id/bnm_list"
+            android:icon="@drawable/ic_list"
+            android:title="@string/list" />
+    <item
+            android:id="@+id/bnm_notifications"
+            android:icon="@drawable/ic_notifications"
+            android:title="Notifications" />
+</menu>

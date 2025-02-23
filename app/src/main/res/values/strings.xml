@@ -2,6 +2,8 @@
     <string name="app_name">The Witcher</string>
     <string name="loginText">Iniciar sesion</string>
     <string name="userHint">Usuario</string>
+    <string name="user">Usuario</string>
+    <string name="user_image">Imagen de usuario</string>
     <string name="emailHint">Email</string>
     <string name="passwordHint">Contraseña</string>
     <string name="passwordHintRepeat">Repetir contraseña</string>
@@ -21,4 +23,8 @@
     <string name="invalid_email">Correo electrónico no válido</string>
     <string name="empty_password">La contraseña no puede estar vacía</string>
     <string name="password_mismatch">Las contraseñas no coinciden</string>
+    <string name="navigation_drawer_open">Open</string>
+    <string name="navigation_drawer_close">Close</string>
+    <string name="logOut">Cerrar sesión</string>
+    <string name="list">Listar</string>
 </resources>

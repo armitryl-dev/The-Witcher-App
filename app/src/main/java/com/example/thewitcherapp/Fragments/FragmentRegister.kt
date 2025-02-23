@@ -9,6 +9,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.navigation.fragment.findNavController
 import com.example.thewitcherapp.R
 import com.example.thewitcherapp.databinding.FragmentRegisterBinding
@@ -22,7 +24,15 @@ class FragmentRegister : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentRegisterBinding.inflate(layoutInflater)
-        return binding.root
+        val view = binding.root
+
+        ViewCompat.setOnApplyWindowInsetsListener(view) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            insets
+        }
+
+        return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -40,7 +50,7 @@ class FragmentRegister : Fragment() {
         binding.botonSingUp.setOnClickListener {
             // Aquí puedes manejar la lógica de registro (como enviar los datos al servidor)
             Toast.makeText(requireContext(), "Registro exitoso", Toast.LENGTH_SHORT).show()
-            findNavController().navigate(R.id.action_secondFragment_to_firstFragment)
+            findNavController().navigate(R.id.action_register_to_login)
         }
     }
 

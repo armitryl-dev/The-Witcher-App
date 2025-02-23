@@ -9,11 +9,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.Toast
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.thewitcherapp.R
 import com.example.thewitcherapp.databinding.FragmentLoginBinding
+import com.example.thewitcherapp.databinding.FragmentRegisterBinding
 
 class FragmentLogin : Fragment() {
     private lateinit var binding: FragmentLoginBinding
@@ -22,8 +25,16 @@ class FragmentLogin : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentLoginBinding.inflate(inflater, container, false)
-        return binding.root
+        binding = FragmentLoginBinding.inflate(layoutInflater)
+        val view = binding.root
+
+        ViewCompat.setOnApplyWindowInsetsListener(view) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            insets
+        }
+
+        return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -65,11 +76,11 @@ class FragmentLogin : Fragment() {
             }
 
             Toast.makeText(requireContext(), "Login exitoso", Toast.LENGTH_SHORT).show()
-            findNavController().navigate(R.id.action_firstFragment_to_secondFragment)
+            findNavController().navigate(R.id.action_login_to_scaffold)
         }
 
         binding.botonRegistrarse.setOnClickListener {
-            findNavController().navigate(R.id.action_firstFragment_to_secondFragment)
+            findNavController().navigate(R.id.action_login_to_register)
         }
 
         binding.textContrasenaOlvidada.setOnClickListener {
