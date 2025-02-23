@@ -1,11 +1,16 @@
 package com.example.thewitcherapp.Fragments
 
+import android.app.AlertDialog
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.text.InputType
+import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.enableEdgeToEdge
+import android.widget.EditText
+import android.widget.Toast
+import androidx.core.widget.addTextChangedListener
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.thewitcherapp.R
 import com.example.thewitcherapp.databinding.FragmentLoginBinding
@@ -13,37 +18,81 @@ import com.example.thewitcherapp.databinding.FragmentLoginBinding
 class FragmentLogin : Fragment() {
     private lateinit var binding: FragmentLoginBinding
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
-    //Solo se usará para inflar el layout del Fragment - ViewBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-
-        binding = FragmentLoginBinding.inflate(layoutInflater)
-        // Inflate the layout for this fragment
+    ): View {
+        binding = FragmentLoginBinding.inflate(inflater, container, false)
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?)
-    {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.botonRegistrarse.setOnClickListener{
+
+        val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+".toRegex()
+
+        fun isValidEmail(email: String): Boolean {
+            return emailPattern.matches(email)
+        }
+
+        binding.botonLogin.isEnabled = false
+
+        binding.userTextField2.addTextChangedListener { text ->
+            val email = text.toString().trim()
+            if (!isValidEmail(email)) {
+                binding.userTextField2.error = getString(R.string.invalid_email)
+            } else {
+                binding.userTextField2.error = null
+            }
+
+            val password = binding.passwordTextField2.text.toString().trim()
+            binding.botonLogin.isEnabled = isValidEmail(email) && password.isNotEmpty()
+        }
+
+        binding.passwordTextField2.addTextChangedListener { text ->
+            val password = text.toString().trim()
+            val email = binding.userTextField2.text.toString().trim()
+
+            binding.botonLogin.isEnabled = isValidEmail(email) && password.isNotEmpty()
+        }
+
+        binding.botonLogin.setOnClickListener {
+            val email = binding.userTextField2.text.toString().trim()
+
+            if (!isValidEmail(email)) {
+                binding.userTextField2.error = getString(R.string.invalid_email)
+                return@setOnClickListener
+            }
+
+            Toast.makeText(requireContext(), "Login exitoso", Toast.LENGTH_SHORT).show()
             findNavController().navigate(R.id.action_firstFragment_to_secondFragment)
         }
 
-    }
+        binding.botonRegistrarse.setOnClickListener {
+            findNavController().navigate(R.id.action_firstFragment_to_secondFragment)
+        }
 
-    companion object {
+        binding.textContrasenaOlvidada.setOnClickListener {
+            val builder = AlertDialog.Builder(requireContext())
 
-        
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            FragmentLogin().apply {
+            val input = EditText(requireContext()).apply {
+                hint = getString(R.string.resetPasswordHint)
+                inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+            }
 
+            builder.setTitle(R.string.resetPassword)
+                .setView(input)
+                .setPositiveButton(R.string.confirm) { _, _ ->
+                    val password = input.text.toString().trim()
+                    if (password.isNotEmpty()) {
+                        Toast.makeText(requireContext(), getString(R.string.passwordResetSucces), Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(requireContext(), getString(R.string.emptyPasswordReset), Toast.LENGTH_SHORT).show()
+                    }
                 }
+                .setNegativeButton(R.string.cancel) { dialog, _ -> dialog.dismiss() }
+
+            builder.create().show()
+        }
     }
 }

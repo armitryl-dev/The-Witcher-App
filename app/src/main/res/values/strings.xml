@@ -11,5 +11,14 @@
     <string name="registerText2">¿No tienes una cuenta?</string>
     <string name="google_button_description">Iniciar sesión con Google</string>
     <string name="facebook_button_description">Iniciar sesión con Facebook</string>
-
+    <string name="resetPassword">Restablecer contraseña</string>
+    <string name="confirm">Confirmar</string>
+    <string name="cancel">Cancelar</string>
+    <string name="passwordResetSucces">Contraseña cambiada con éxito</string>
+    <string name="resetPasswordHint">Nueva contraseña</string>
+    <string name="emptyPasswordReset">No se ha cambiado la contraseña, el campo no puede estar vacío</string>
+    <string name="empty_username">El usuario no puede estar vacío</string>
+    <string name="invalid_email">Correo electrónico no válido</string>
+    <string name="empty_password">La contraseña no puede estar vacía</string>
+    <string name="password_mismatch">Las contraseñas no coinciden</string>
 </resources>
