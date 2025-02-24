@@ -14,8 +14,8 @@
                     android:title="@string/list" />
             <item
                     android:id="@+id/nav_notifications"
-                    android:icon="@drawable/ic_notifications"
-                    android:title="Notifications" />
+                    android:icon="@drawable/ic_fav"
+                    android:title="Fav" />
 
         </menu>
     </item>

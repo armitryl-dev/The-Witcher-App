@@ -26,5 +26,12 @@
     <string name="navigation_drawer_open">Open</string>
     <string name="navigation_drawer_close">Close</string>
     <string name="logOut">Cerrar sesión</string>
+    <string name="sort">Ordenar</string>
+    <string name="search">Buscar</string>
     <string name="list">Listar</string>
+    <string name="contact">Contacto</string>
+    <string name="whatsapp">Escríbenos</string>
+    <string name="telephonenum">+34 636 34 84 55</string>
+    <string name="email">ir@cdprojekt.com</string>
+    <string name="contactlocation">Varsovia</string>
 </resources>

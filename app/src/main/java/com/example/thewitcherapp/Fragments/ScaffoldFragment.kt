@@ -15,17 +15,15 @@ import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.core.view.forEach
 import androidx.lifecycle.Lifecycle
+import androidx.navigation.fragment.findNavController
 import com.example.thewitcherapp.R
 import com.example.thewitcherapp.databinding.FragmentScaffoldBinding
 import com.google.android.material.navigation.NavigationView
 
-
-class ScaffoldFragment : Fragment()
-{
+class ScaffoldFragment : Fragment() {
     private lateinit var binding: FragmentScaffoldBinding
 
-    override fun onCreate(savedInstanceState: Bundle?)
-    {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
         }
@@ -34,16 +32,13 @@ class ScaffoldFragment : Fragment()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View?
-    {
-        // Inflate the layout for this fragment
-        binding = FragmentScaffoldBinding.inflate(layoutInflater)
+    ): View {
+        binding = FragmentScaffoldBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     @RequiresApi(Build.VERSION_CODES.P)
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?)
-    {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         /* TOOLBAR */
@@ -56,12 +51,9 @@ class ScaffoldFragment : Fragment()
         binding.toolbar.title = spannableTitle
 
         val menuHost: MenuHost = requireActivity()
-        menuHost.addMenuProvider(object: MenuProvider {
-
-            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater)
-            {
+        menuHost.addMenuProvider(object : MenuProvider {
+            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
                 menuInflater.inflate(R.menu.toolbar, menu)
-
                 menu.forEach { item ->
                     val spannable = SpannableString(item.title)
                     spannable.setSpan(typefaceToolbar?.let { TypefaceSpan(it) }, 0, spannable.length, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
@@ -72,11 +64,15 @@ class ScaffoldFragment : Fragment()
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
                 return when (menuItem.itemId) {
                     R.id.action_search -> {
-                        // Manejar la selección del item1
+                        // Manejar la selección del ítem de búsqueda
                         true
                     }
-                    R.id.action_settings -> {
-                        // Manejar la selección del item2
+                    R.id.action_sort -> {
+                        // Manejar la selección del ítem de ordenamiento
+                        true
+                    }
+                    R.id.action_logout -> {
+                        findNavController().navigate(R.id.action_scaffold_to_login)
                         true
                     }
                     else -> false
@@ -87,49 +83,46 @@ class ScaffoldFragment : Fragment()
         /* DRAWERLAYOUT */
         val toggle = ActionBarDrawerToggle(
             requireActivity(), binding.drawerLayout, binding.toolbar,
-            R.string.navigation_drawer_open, R.string.navigation_drawer_close)
+            R.string.navigation_drawer_open, R.string.navigation_drawer_close
+        )
 
         binding.drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
 
-        binding.navigationView.setNavigationItemSelectedListener {
-
-                item -> when(item.itemId)
-        {
-            R.id.nav_home -> {
-                true
-            }
-
-            R.id.nav_list -> {
-                true
-            }
-
-            R.id.nav_notifications -> {
-                true
-            }
-
-            else -> false
-        }
-        }
-
-        /* BOTTOM NAVIGATION MENU */
-        binding.bottomNavigation.setOnItemSelectedListener {
-                item ->
+        binding.navigationView.setNavigationItemSelectedListener { item ->
             when (item.itemId) {
-                R.id.bnm_home -> {
-                    // Handle Home navigation
+                R.id.nav_home -> {
+                    replaceFragment(FragmentContacto()) // Abre FragmentContacto
                     true
                 }
-                R.id.bnm_list -> {
-                    // Handle Dashboard navigation
+                R.id.nav_list -> {
                     true
                 }
-                R.id.bnm_notifications -> {
-                    // Handle Notifications navigation
+                R.id.nav_notifications -> {
                     true
                 }
                 else -> false
             }
+        }
+
+        /* BOTTOM NAVIGATION MENU */
+        binding.bottomNavigation.setOnItemSelectedListener { item ->
+            val fragment = when (item.itemId) {
+                R.id.bnm_home -> FragmentContacto()
+                else -> null
+            }
+
+            if (fragment != null) {
+                replaceFragment(fragment)
+                true
+            } else {
+                false
+            }
+        }
+
+        // Cargar Fragmento por defecto al abrir la app
+        if (savedInstanceState == null) {
+            replaceFragment(FragmentContacto())
         }
 
         // Cambiar fuente en el menú inferior
@@ -146,7 +139,6 @@ class ScaffoldFragment : Fragment()
         val typefaceDrawerItems = ResourcesCompat.getFont(requireContext(), R.font.cinzel)
 
         binding.navigationView.menu.forEach { item ->
-
             val spannable = SpannableString(item.title)
             spannable.setSpan(typefaceDrawerTitulo?.let { TypefaceSpan(it) }, 0, spannable.length, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
             item.title = spannable
@@ -157,5 +149,12 @@ class ScaffoldFragment : Fragment()
                 subItem.title = subSpannable
             }
         }
+    }
+
+    // Método para reemplazar el fragmento en el FrameLayout
+    private fun replaceFragment(fragment: Fragment) {
+        childFragmentManager.beginTransaction()
+            .replace(R.id.frameLayoutContainer, fragment)
+            .commit()
     }
 }
