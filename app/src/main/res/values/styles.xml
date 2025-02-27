@@ -1,0 +1,16 @@
+<!-- res/values/styles.xml -->
+<resources>
+    <!-- Tema principal de la aplicación -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Personaliza aquí tu tema principal -->
+    </style>
+
+    <!-- Tema para el Splash Screen -->
+    <style name="SplashTheme" parent="">
+        <!-- Personaliza el fondo del Splash Screen -->
+        <item name="android:windowBackground">@drawable/background</item>
+        <!-- Define la duración y el estilo de animación (opcional) -->
+        <item name="android:windowAnimationStyle">@android:style/Animation</item>
+    </style>
+</resources>
+

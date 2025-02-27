@@ -37,4 +37,8 @@
     <string name="telephonenum">+34 636 34 84 55</string>
     <string name="email">ir@cdprojekt.com</string>
     <string name="contactlocation">Varsovia</string>
+    <string name="name">Nombre</string>
+    <string name="specie">Especie</string>
+    <string name="threat">Amenaza</string>
+    <string name="options">Opciones</string>
 </resources>

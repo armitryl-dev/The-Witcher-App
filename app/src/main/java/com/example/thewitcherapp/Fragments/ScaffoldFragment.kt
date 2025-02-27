@@ -16,6 +16,7 @@ import androidx.core.view.MenuProvider
 import androidx.core.view.forEach
 import androidx.lifecycle.Lifecycle
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.setupWithNavController
 import com.example.thewitcherapp.R
 import com.example.thewitcherapp.databinding.FragmentScaffoldBinding
 import com.google.android.material.navigation.NavigationView
@@ -65,16 +66,17 @@ class ScaffoldFragment : Fragment() {
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
                 return when (menuItem.itemId) {
                     R.id.action_search -> {
-                        // Manejar la selección del ítem de búsqueda
+
                         true
                     }
                     R.id.action_sort -> {
-                        // Manejar la selección del ítem de ordenamiento
+
                         true
                     }
                     R.id.action_logout -> {
                         FirebaseAuth.getInstance().signOut()
                         findNavController().navigate(R.id.action_scaffold_to_login)
+                        activity?.finish()
                         true
                     }
                     else -> false
@@ -94,23 +96,37 @@ class ScaffoldFragment : Fragment() {
         binding.navigationView.setNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.nav_home -> {
-                    replaceFragment(FragmentContacto()) // Abre FragmentContacto
+                    replaceFragment(FragmentContacto())
                     true
                 }
                 R.id.nav_list -> {
+                    replaceFragment(FragmentLista())
                     true
                 }
-                R.id.nav_notifications -> {
+                R.id.nav_fav -> {
+                    replaceFragment(FragmentFav())
+                    true
+                }
+                R.id.nav_logout -> {
+                    FirebaseAuth.getInstance().signOut()
+                    findNavController().navigate(R.id.action_scaffold_to_login)
+                    activity?.finish()
                     true
                 }
                 else -> false
             }
         }
 
+        // Conectamos el bottonNavigationMenu con el NavController
+        val navController = findNavController()
+        binding.bottomNavigation.setupWithNavController(navController)
+
         /* BOTTOM NAVIGATION MENU */
         binding.bottomNavigation.setOnItemSelectedListener { item ->
             val fragment = when (item.itemId) {
                 R.id.bnm_home -> FragmentContacto()
+                R.id.bnm_list -> FragmentLista()
+                R.id.bnm_fav -> FragmentFav()
                 else -> null
             }
 
@@ -153,7 +169,6 @@ class ScaffoldFragment : Fragment() {
         }
     }
 
-    // Método para reemplazar el fragmento en el FrameLayout
     private fun replaceFragment(fragment: Fragment) {
         childFragmentManager.beginTransaction()
             .replace(R.id.frameLayoutContainer, fragment)

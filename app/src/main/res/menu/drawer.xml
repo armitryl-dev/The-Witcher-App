@@ -1,7 +1,7 @@
 <menu
         xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:title="Opciones">
+    <item android:title="@string/options">
         <menu>
 
             <item
@@ -13,9 +13,14 @@
                     android:icon="@drawable/ic_list"
                     android:title="@string/list" />
             <item
-                    android:id="@+id/nav_notifications"
+                    android:id="@+id/nav_fav"
                     android:icon="@drawable/ic_fav"
                     android:title="Fav" />
+
+            <item
+                    android:id="@+id/nav_logout"
+                    android:icon="@drawable/ic_logout"
+                    android:title="@string/logOut" />
 
         </menu>
     </item>
