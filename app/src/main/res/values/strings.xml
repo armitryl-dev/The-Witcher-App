@@ -13,10 +13,13 @@
     <string name="registerText2">¿No tienes una cuenta?</string>
     <string name="google_button_description">Iniciar sesión con Google</string>
     <string name="facebook_button_description">Iniciar sesión con Facebook</string>
+    <string name="loginError">Se ha producido un error iniciando sesión</string>
+    <string name="registerError">Se ha producido un error registrando al usuario</string>
     <string name="resetPassword">Restablecer contraseña</string>
     <string name="confirm">Confirmar</string>
     <string name="cancel">Cancelar</string>
-    <string name="passwordResetSucces">Contraseña cambiada con éxito</string>
+    <string name="passwordResetSucces">Email enviado</string>
+    <string name="passwordResetFailed">Error al enviar el email</string>
     <string name="resetPasswordHint">Nueva contraseña</string>
     <string name="emptyPasswordReset">No se ha cambiado la contraseña, el campo no puede estar vacío</string>
     <string name="empty_username">El usuario no puede estar vacío</string>

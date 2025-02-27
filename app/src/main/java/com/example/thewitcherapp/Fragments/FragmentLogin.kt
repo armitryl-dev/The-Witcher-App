@@ -3,7 +3,6 @@ package com.example.thewitcherapp.Fragments
 import android.app.AlertDialog
 import android.os.Bundle
 import android.text.InputType
-import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,7 +15,8 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.thewitcherapp.R
 import com.example.thewitcherapp.databinding.FragmentLoginBinding
-import com.example.thewitcherapp.databinding.FragmentRegisterBinding
+import com.google.firebase.auth.FirebaseAuth
+import android.widget.LinearLayout
 
 class FragmentLogin : Fragment() {
     private lateinit var binding: FragmentLoginBinding
@@ -69,14 +69,23 @@ class FragmentLogin : Fragment() {
 
         binding.botonLogin.setOnClickListener {
             val email = binding.userTextField2.text.toString().trim()
+            val builder = AlertDialog.Builder(requireContext())
 
             if (!isValidEmail(email)) {
                 binding.userTextField2.error = getString(R.string.invalid_email)
                 return@setOnClickListener
             }
 
-            Toast.makeText(requireContext(), "Login exitoso", Toast.LENGTH_SHORT).show()
-            findNavController().navigate(R.id.action_login_to_scaffold)
+            FirebaseAuth.getInstance().signInWithEmailAndPassword(binding.userTextField2.text.toString(), binding.passwordTextField2.text.toString()).addOnCompleteListener {
+                if (it.isSuccessful) {
+                    Toast.makeText(requireContext(), "Login exitoso", Toast.LENGTH_SHORT).show()
+                    findNavController().navigate(R.id.action_login_to_scaffold)
+                } else {
+                    builder.setTitle("Error").setMessage(R.string.loginError).setPositiveButton(R.string.confirm, null)
+                    builder.create().show()
+                }
+            }
+
         }
 
         binding.botonRegistrarse.setOnClickListener {
@@ -85,23 +94,37 @@ class FragmentLogin : Fragment() {
 
         binding.textContrasenaOlvidada.setOnClickListener {
             val builder = AlertDialog.Builder(requireContext())
+            val layout = LinearLayout(requireContext())
+            layout.orientation = LinearLayout.VERTICAL
 
-            val input = EditText(requireContext()).apply {
-                hint = getString(R.string.resetPasswordHint)
-                inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+            val inputEmail = EditText(requireContext()).apply {
+                hint = getString(R.string.emailHint)
+                inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS
             }
 
+            layout.addView(inputEmail)
+
             builder.setTitle(R.string.resetPassword)
-                .setView(input)
+                .setView(layout)
                 .setPositiveButton(R.string.confirm) { _, _ ->
-                    val password = input.text.toString().trim()
-                    if (password.isNotEmpty()) {
-                        Toast.makeText(requireContext(), getString(R.string.passwordResetSucces), Toast.LENGTH_SHORT).show()
+                    val email = inputEmail.text.toString().trim()
+
+                    if (email.isNotEmpty()) {
+                        FirebaseAuth.getInstance().sendPasswordResetEmail(email)
+                            .addOnCompleteListener { task ->
+                                if (task.isSuccessful) {
+                                    Toast.makeText(requireContext(), getString(R.string.passwordResetSucces), Toast.LENGTH_SHORT).show()
+                                } else {
+                                    Toast.makeText(requireContext(), getString(R.string.passwordResetFailed), Toast.LENGTH_SHORT).show()
+                                }
+                            }
                     } else {
                         Toast.makeText(requireContext(), getString(R.string.emptyPasswordReset), Toast.LENGTH_SHORT).show()
                     }
                 }
-                .setNegativeButton(R.string.cancel) { dialog, _ -> dialog.dismiss() }
+                .setNegativeButton(R.string.cancel) { dialog, _ ->
+                    dialog.dismiss()
+                }
 
             builder.create().show()
         }

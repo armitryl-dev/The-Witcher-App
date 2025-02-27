@@ -10,9 +10,7 @@ import android.view.ViewGroup
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import com.example.thewitcherapp.R
 import com.example.thewitcherapp.databinding.FragmentContactoBinding
-import com.example.thewitcherapp.databinding.FragmentLoginBinding
 import com.google.android.material.snackbar.Snackbar
 
 class FragmentContacto : Fragment() {

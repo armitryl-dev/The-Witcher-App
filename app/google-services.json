@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1836967506",
+    "project_id": "thewitcherapp-30db1",
+    "storage_bucket": "thewitcherapp-30db1.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1836967506:android:532c079f33fe4aeaa2218b",
+        "android_client_info": {
+          "package_name": "com.example.thewitcherapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAhBjiSEf_0cHU5h-xk6G3NHOIxhDlajfc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

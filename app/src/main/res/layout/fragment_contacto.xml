@@ -19,7 +19,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="212dp" app:layout_constraintHorizontal_bias="0.498"/>
+            android:layout_marginTop="212dp"
+            app:layout_constraintHorizontal_bias="0.5"/>
     <ImageView
             android:src="@drawable/logo_thewitcher"
             android:id="@+id/imageViewLogo"

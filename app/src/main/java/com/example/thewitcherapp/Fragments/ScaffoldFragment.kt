@@ -19,6 +19,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.thewitcherapp.R
 import com.example.thewitcherapp.databinding.FragmentScaffoldBinding
 import com.google.android.material.navigation.NavigationView
+import com.google.firebase.auth.FirebaseAuth
 
 class ScaffoldFragment : Fragment() {
     private lateinit var binding: FragmentScaffoldBinding
@@ -72,6 +73,7 @@ class ScaffoldFragment : Fragment() {
                         true
                     }
                     R.id.action_logout -> {
+                        FirebaseAuth.getInstance().signOut()
                         findNavController().navigate(R.id.action_scaffold_to_login)
                         true
                     }
